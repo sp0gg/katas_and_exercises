@@ -1,21 +1,16 @@
 require 'rspec'
 
-def solution_one x, a
-  required_values = []
-  1.upto(x) { |i| required_values << i }
-  found_values = []
-  a.each_index do |i|
-    found_values << a[i] unless found_values.include?(a[i])
-    return i if required_values == found_values.sort!
-  end
-  -1
-end
-
 def solution x, a
-  uniques = []
-  a.each_index do |i|
-    uniques << a[i] unless uniques.include?(a[i])
-    return i if uniques.inject(:*) == (1..x).inject(:*)
+  counter = x
+  required_values = []
+  1.upto(x) { required_values << false }
+
+  a.each_with_index do |v, i|
+    unless required_values[v-1]
+      required_values[v-1] = true
+      counter -= 1
+    end
+    return i if counter == 0
   end
   -1
 end

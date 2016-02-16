@@ -13,7 +13,7 @@ end
 
 test_array = [10, 0, 8, 2, -1, 12, 11, 3]
 test_array_2 = [5, 5]
-test_array_3 = [-10, -5,4,10,100]
+test_array_3 = [-10, -5, 4, 10, 100]
 
 describe 'bike test' do
   describe '#solution' do
