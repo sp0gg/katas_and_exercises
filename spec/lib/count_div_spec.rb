@@ -3,9 +3,9 @@ require 'rspec'
 def solution a, b, k
   count = 0
   count += 1 if a % k == 0
-  left = (a / k)
-  right = (b / k)
-  count += (right - left)
+  left = a / k
+  right = b / k
+  count += right - left
 end
 
 describe 'My behaviour' do
