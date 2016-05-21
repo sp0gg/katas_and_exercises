@@ -50,6 +50,10 @@ describe BowlingGame do
       game.roll(7)
       expect(game.score).to eq 45
     end
+    it 'should correctly calculate a perfect game' do
+      12.times {game.roll(10)}
+      expect(game.score).to eq 300
+    end
   end
 end
 
