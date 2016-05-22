@@ -9,5 +9,6 @@ describe 'function calculator' do
     expect(four(plus(nine()))).to eq 13
     expect(eight(minus(three()))).to eq 5
     expect(six(divided_by(two()))).to eq 3
+    expect(seven(divided_by(two()))).to eq 3.5
   end
 end
