@@ -1,47 +1,35 @@
-def zero(*exp)
-  calculate(0, *exp)
-end
-def one(*exp)
-  calculate(1, *exp)
-end
-def two(*exp)
-  calculate(2, *exp)
-end
-def three(*exp)
-  calculate(3, *exp)
-end
-def four(*exp)
-  calculate(4, *exp)
-end
-def five(*exp)
-  calculate(5, *exp)
-end
-def six(*exp)
-  calculate(6, *exp)
-end
-def seven(*exp)
-  calculate(7, *exp)
-end
-def eight(*exp)
-  calculate(8, *exp)
-end
-def nine(*exp)
-  calculate(9, *exp)
-end
-def plus(num)
-  [:+, num]
-end
-def minus(num)
-  [:-, num]
-end
-def times(num)
-  [:*, num]
-end
-def divided_by(num)
-  [:/, num]
+NUM_MAP = {
+    zero: 0,
+    one: 1,
+    two: 2,
+    three: 3,
+    four: 4,
+    five: 5,
+    six: 6,
+    seven: 7,
+    eight: 8,
+    nine: 9
+}
+
+OP_MAP = {
+    plus: :+,
+    minus: :-,
+    times: :*,
+    divided_by: :/
+}
+
+def method_missing(arg, *exp)
+  super(arg) if !NUM_MAP.has_key?(arg) && !OP_MAP.has_key?(arg)
+  return calculate(NUM_MAP[arg], *exp) if NUM_MAP.has_key?(arg)
+  get_op_pair(arg, exp[0]) if OP_MAP.has_key?(arg)
 end
 
 def calculate(num, *exp)
   return num if exp.empty?
-  [num, exp[0][1]].inject(exp[0][0])
+  [num, exp[0][1]].inject(OP_MAP[exp[0][0]])
+end
+
+def get_op_pair(op, num)
+  num += 0.0 if op == :/
+  [op, num]
 end
