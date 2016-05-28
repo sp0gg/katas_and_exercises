@@ -5,11 +5,13 @@ PREFIX_EXPONENTS = %w(m km Mm Gm Tm Pm Em Zm Ym)
 def meters(x)
   x = x.to_i
   log = Math.log10(x).floor/3
-  triplet = 1000**log
-  number = x / (triplet)
-  secondary_number = (x - (number * 1000 ** log)) / (triplet / 1000) if log > 0
-  string = number.to_s
-  string << ".#{secondary_number}".chomp('0').chomp('0') if secondary_number && secondary_number > 0
+  first_triplet = 1000**log
+  second_triplet = first_triplet / 1000
+  first_triplet_value = x / (first_triplet)
+  second_triplet_value = (x - (first_triplet_value * 1000 ** log)) / second_triplet if log > 0
+
+  string = first_triplet_value.to_s
+  string << ".#{second_triplet_value}".chomp('00') if second_triplet_value && second_triplet_value > 0
   string << PREFIX_EXPONENTS[log]
 end
 
