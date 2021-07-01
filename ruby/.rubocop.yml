@@ -1,0 +1,73 @@
+require:
+  - rubocop-rails
+  - rubocop-performance
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'bin/*'
+    - 'db/schema.rb'
+    - 'db/migrate/*'
+
+Style/Documentation:
+  Enabled: false
+
+Layout/LineLength:
+  Max: 99
+  Exclude:
+    - 'config/**/*'
+    - 'db/seeds.rb'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+    - 'config/**/*'
+
+Rails/SkipsModelValidations:
+  Exclude:
+    - 'db/seeds.rb'
+
+Style/StringConcatenation:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+  Exclude:
+    - 'spec/integration/**/*'
+    - 'spec/support/**'
+
+RSpec/AnyInstance:
+  Exclude:
+    - 'spec/integration/**/*'
+
+Metrics/AbcSize:
+  Exclude:
+    - 'spec/**/*'
+    - 'db/seeds.rb'
+RSpec/NestedGroups:
+  Max: 6
+
+RSpec/ExampleLength:
+  Max: 7
+
+RSpec/MultipleMemoizedHelpers:
+  # TODO: this should be enabled and looked into (enabled thru rubocop upgrade)
+  Enabled: false
+
+Rails/UniqueValidationWithoutIndex:
+  # TODO: An error occurred while Rails/UniqueValidationWithoutIndex cop was inspecting /home/sp0gg/projects/peer-sincere/api/app/models/person.rb:26:2.
+  #Errors are usually caused by RuboCop bugs.
+  #Please, report your problems to RuboCop's issue tracker.
+  Enabled: false
+
+Style/BeginBlock:
+  Exclude:
+    - 'db/seeds.rb'
+
+Metrics/MethodLength:
+  Exclude:
+    - 'db/seeds.rb'
+Lint/UselessAssignment:
+  Exclude:
+    - 'db/seeds.rb'
